@@ -28,7 +28,7 @@ public class Main {
                         if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*") || operation.equals("reset") || operation.equals("finish")){
                             break;
                         } else {
-                            System.out.print("Please place a valid operation (+ - * / or reset/finish): ");
+                            System.out.print("Please place a valid operation (+ - * / or reset,finish): ");
                         }
                     }
                     //Reset operation
@@ -41,15 +41,13 @@ public class Main {
                 float secondNumber = scanner.nextFloat();
 
                 //Process depending on user's operation choice
-                if (operation.equals("+")) {
-                    result = firstNumber + secondNumber;
-                } else if (operation.equals("-")) {
-                    result = firstNumber - secondNumber;
-                } else if (operation.equals("/")) {
-                    result = firstNumber / secondNumber;
-                } else if (operation.equals("*")) {
-                    result = firstNumber * secondNumber;
-                }
+                result = switch (operation) {
+                    case "+" -> firstNumber + secondNumber;
+                    case "-" -> firstNumber - secondNumber;
+                    case "/" -> firstNumber / secondNumber;
+                    case "*" -> firstNumber * secondNumber;
+                    default -> result;
+                };
 
                 //Output
                 System.out.println(result);
