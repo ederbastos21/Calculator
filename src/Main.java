@@ -10,6 +10,11 @@ public class Main {
 
         while(true){
             //Get first number
+                //Doesn't continue the code if finish operation was used
+                if (operation.equals("finish")){
+                    scanner.close();
+                    break;
+                }
             System.out.print("Insert first number: ");
             float firstNumber = scanner.nextFloat();
 
@@ -20,14 +25,14 @@ public class Main {
                 //Avoids user from placing an unwanted character
                     while (true) {
                         operation = scanner.next();
-                        if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*") || operation.equals("reset")){
+                        if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*") || operation.equals("reset") || operation.equals("finish")){
                             break;
                         } else {
-                            System.out.print("Please place a valid operation (+ - * / or reset): ");
+                            System.out.print("Please place a valid operation (+ - * / or reset/finish): ");
                         }
                     }
                     //Reset operation
-                    if (operation.equals("reset")) {
+                    if (operation.equals("reset") || operation.equals("finish")) {
                     break;
                     }
 
