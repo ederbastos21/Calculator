@@ -8,43 +8,49 @@ public class Main {
         float result = 0;
         String operation = "";
 
-        //Get first number
-        System.out.print("Insert first number: ");
-        float firstNumber = scanner.nextFloat();
+        while(true){
+            //Get first number
+            System.out.print("Insert first number: ");
+            float firstNumber = scanner.nextFloat();
 
-        //Loop that will keep calculating infinitely
-        while (true) {
-            //Get operation
-            System.out.print("Insert operation: ");
-            //Avoid user from placing an unwanted character
+            //Keep calculating infinitely
             while (true) {
-                operation = scanner.next();
-                if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*")) {
+                //Get operation
+                System.out.print("Insert operation: ");
+                //Avoids user from placing an unwanted character
+                    while (true) {
+                        operation = scanner.next();
+                        if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*") || operation.equals("reset")){
+                            break;
+                        } else {
+                            System.out.print("Please place a valid operation (+ - * / or reset): ");
+                        }
+                    }
+                    //Reset operation
+                    if (operation.equals("reset")) {
                     break;
-                } else {
-                    System.out.print("Please place a valid operation (+ - * /): ");
+                    }
+
+                //Get second number
+                System.out.print("Insert second number: ");
+                float secondNumber = scanner.nextFloat();
+
+                //Process depending on user's operation choice
+                if (operation.equals("+")) {
+                    result = firstNumber + secondNumber;
+                } else if (operation.equals("-")) {
+                    result = firstNumber - secondNumber;
+                } else if (operation.equals("/")) {
+                    result = firstNumber / secondNumber;
+                } else if (operation.equals("*")) {
+                    result = firstNumber * secondNumber;
                 }
+
+                //Output
+                System.out.println(result);
+
+                firstNumber = result;
             }
-
-            //Get second number
-            System.out.print("Insert second number: ");
-            float secondNumber = scanner.nextFloat();
-
-            //Process depending on user's operation choice
-            if (operation.equals("+")) {
-                result = firstNumber + secondNumber;
-            } else if (operation.equals("-")) {
-                result = firstNumber - secondNumber;
-            } else if (operation.equals("/")) {
-                result = firstNumber / secondNumber;
-            } else if (operation.equals("*")) {
-                result = firstNumber * secondNumber;
-            }
-
-            //Output
-            System.out.println(result);
-
-            firstNumber = result;
         }
     }
 }
