@@ -6,40 +6,45 @@ public class Main {
 
         //Declare variables outside of function scope
         float result = 0;
-        String operation = "a";
+        String operation = "";
 
         //Get first number
         System.out.print("Insert first number: ");
         float firstNumber = scanner.nextFloat();
 
-        //Get operation
-        System.out.print("Insert operation: ");
-            //Avoid user from placing an unwanted character
+        //Loop that will keep calculating infinitely
         while (true) {
-            operation = scanner.next();
-            if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*")){
-                break;
-            } else {
-                System.out.print("Please place a valid operation (+ - * /): ");
+            //Get operation
+            System.out.print("Insert operation: ");
+            //Avoid user from placing an unwanted character
+            while (true) {
+                operation = scanner.next();
+                if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*")) {
+                    break;
+                } else {
+                    System.out.print("Please place a valid operation (+ - * /): ");
+                }
             }
+
+            //Get second number
+            System.out.print("Insert second number: ");
+            float secondNumber = scanner.nextFloat();
+
+            //Process depending on user's operation choice
+            if (operation.equals("+")) {
+                result = firstNumber + secondNumber;
+            } else if (operation.equals("-")) {
+                result = firstNumber - secondNumber;
+            } else if (operation.equals("/")) {
+                result = firstNumber / secondNumber;
+            } else if (operation.equals("*")) {
+                result = firstNumber * secondNumber;
+            }
+
+            //Output
+            System.out.println(result);
+
+            firstNumber = result;
         }
-
-        //Get second number
-        System.out.print("Insert second number: ");
-        float secondNumber = scanner.nextFloat();
-
-        //Process depending on user's operation choice
-        if (operation.equals("+")){
-            result = firstNumber + secondNumber;
-        } else if (operation.equals("-")){
-            result = firstNumber - secondNumber;
-        } else if (operation.equals("/")){
-            result = firstNumber / secondNumber;
-        } else if (operation.equals("*")) {
-            result = firstNumber * secondNumber;
-        }
-
-        //Output
-        System.out.println(result);
     }
 }
