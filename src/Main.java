@@ -6,6 +6,7 @@ public class Main {
 
         //Declare variables outside of function scope
         float result = 0;
+        String operation = "a";
 
         //Get first number
         System.out.print("Insert first number: ");
@@ -13,7 +14,15 @@ public class Main {
 
         //Get operation
         System.out.print("Insert operation: ");
-        String operation = scanner.next();
+            //Avoid user from placing an unwanted character
+        while (true) {
+            operation = scanner.next();
+            if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*")){
+                break;
+            } else {
+                System.out.print("Please place a valid operation (+ - * /): ");
+            }
+        }
 
         //Get second number
         System.out.print("Insert second number: ");
