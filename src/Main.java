@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 public class Main {
     public static void main(String[] args) {
         //Create scanner
@@ -6,41 +7,61 @@ public class Main {
 
         //Declare variables outside of function scope
         float result = 0;
+        float firstNumber = 1;
+        float secondNumber = 1;
         String operation = "";
 
+        //Loop to reset the calculator
         while(true){
-            //Get first number
-                //Doesn't continue the code if finish operation was used
-                if (operation.equals("finish")){
-                    scanner.close();
-                    break;
-                }
+            //Doesn't continue the code if finish operation was used
+            if (operation.equals("finish")){
+                scanner.close();
+                break;
+            }
+            //Get first number with code to avoid placing not a number
             System.out.print("Insert first number: ");
-            float firstNumber = scanner.nextFloat();
+            while(true) {
+                try {
+                    firstNumber = scanner.nextFloat();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.print("Place a valid number: ");
+                    scanner.next();
+                }
+            }
 
-            //Keep calculating infinitely
+
+            //Loop to keep calculating with the obtained result
             while (true) {
                 //Get operation
                 System.out.print("Insert operation: ");
-                //Avoids user from placing an unwanted character
+                //Avoids user from placing an unwanted character on operation
                     while (true) {
                         operation = scanner.next();
                         if (operation.equals("+") || operation.equals("-") || operation.equals("/") || operation.equals("*") || operation.equals("reset") || operation.equals("finish")){
                             break;
                         } else {
-                            System.out.print("Please place a valid operation (+ - * / or reset,finish): ");
+                            System.out.print("Place a valid operation (+ - * / or reset/finish): ");
                         }
                     }
-                    //Reset operation
+                    //Reset calculator by breaking loop
                     if (operation.equals("reset") || operation.equals("finish")) {
                     break;
                     }
 
-                //Get second number
+                //Get second number with code to avoid placing not a number
                 System.out.print("Insert second number: ");
-                float secondNumber = scanner.nextFloat();
+                while(true) {
+                    try {
+                        secondNumber = scanner.nextFloat();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.print("Place a valid number: ");
+                        scanner.next();
+                    }
+                }
 
-                //Process depending on user's operation choice
+                //Process the calculation depending on user's operation choice
                 result = switch (operation) {
                     case "+" -> firstNumber + secondNumber;
                     case "-" -> firstNumber - secondNumber;
@@ -50,7 +71,7 @@ public class Main {
                 };
 
                 //Output
-                System.out.println(result);
+                System.out.println("-> "+result);
 
                 firstNumber = result;
             }
