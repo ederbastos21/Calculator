@@ -1,0 +1,1 @@
+This is my first program written in Java that I spent quite some time making it. It works well and I guess it's pretty much bug proof (aside from dividing by 0, since most IDES can handle it), it's also my first project that I used git on, so there might be a lot of mistakes.
